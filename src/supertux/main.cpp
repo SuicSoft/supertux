@@ -64,6 +64,10 @@ extern "C" {
 #include "video/renderer.hpp"
 #include "worldmap/worldmap.hpp"
 
+#ifdef __ANDROID__
+    #include <android_native_app_glue.h>
+#endif
+
 class ConfigSubsystem
 {
 public:
@@ -308,6 +312,16 @@ public:
   }
 };
 
+#ifdef __ANDROID__
+    void android_main(struct android_app* state)
+    {
+        app_dummy(); // Make sure glue isn't stripped
+
+        this.run(0, (char) 0); // Run the game
+
+        ANativeActivity_finish(state->activity);
+    }
+#endif
 void
 Main::init_video()
 {
