@@ -39,7 +39,7 @@ using namespace gl;
 #if defined(MACOSX)
 #  include <OpenGL/gl.h>
 #  include <OpenGL/glext.h>
-#elif defined(GL_VERSION_ES_CM_1_0)
+#elif defined(GL_VERSION_ES_CM_1_0) || defined(ANDROID)
 #  include <GLES/gl.h>
 #  include <GLES/glext.h>
 #else
